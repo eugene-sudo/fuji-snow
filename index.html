@@ -33,7 +33,12 @@
   if (!EXEC_URL) { h.textContent = "還沒設定網址:請在 index.html 填入 EXEC_URL"; }
   else {
     f.addEventListener("load", function(){ s.classList.add("off"); });
-    f.src = EXEC_URL;
+    var saved = ""; try { saved = localStorage.getItem("fujiMe") || ""; } catch (e) {}
+    f.src = EXEC_URL + (saved ? (EXEC_URL.indexOf("?") < 0 ? "?" : "&") + "me=" + encodeURIComponent(saved) : "");
+    window.addEventListener("message", function(ev){
+      var d = ev.data, host = ""; try { host = new URL(ev.origin).hostname; } catch (e) {}
+      if (d && d.t === "fuji-me" && /^[a-z0-9_-]{1,20}$/.test(d.id) && /googleusercontent\.com$/.test(host)) { try { localStorage.setItem("fujiMe", d.id); } catch (e) {} }
+    });
     setTimeout(function(){ if (!s.classList.contains("off")) h.textContent = "還在載入,網路慢的時候要等幾秒…"; }, 6000);
   }
   if ("serviceWorker" in navigator) { window.addEventListener("load", function(){ navigator.serviceWorker.register("sw.js").catch(function(){}); }); }
