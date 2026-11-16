@@ -1,0 +1,16 @@
+{
+  "name": "富士湖光 × 越後雪國",
+  "short_name": "富士雪國",
+  "description": "2026 年末日本自駕滑雪旅程:行程、美食投票、清單與分帳",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FFFCF6",
+  "theme_color": "#FFFCF6",
+  "lang": "zh-Hant",
+  "icons": [
+    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}
+  ]
+}
